@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPuntos - Red de Centros de Acopio y Reciclaje</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="cabecera">
+        <div class="contenedor barra">
+            <a class="marca" href="#inicio" aria-label="EcoPuntos, ir al inicio">
+                <img src="imagenes/Logo.png" alt="Logotipo de EcoPuntos" width="42">
+                <span>EcoPuntos</span>
+            </a>
+
+            <!-- BOTÓN HAMBURGUESA (Se muestra en pantallas móviles) -->
+            <button id="boton-menu" class="hamburguesa" type="button" aria-controls="navegacion" aria-expanded="false"
+                aria-label="Abrir menú">
+                <span class="lineas" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span id="texto-menu">Menú</span>
+            </button>
+
+            <!-- NAVEGACIÓN PRINCIPAL -->
+            <nav id="navegacion" class="navegacion" aria-label="Navegación principal">
+                <ul class="menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Quiénes somos</a></li>
+                    <li><a href="#favoritos">Mis Favoritos</a></li>
+                    <li>
+                        <!-- Submenú desplegable -->
+                        <details id="resolver" class="desplegable">
+                            <summary>Servicios</summary>
+                            <ul class="submenu">
+                                <li><a href="#servicios">Centros de Acopio</a></li>
+                                <li><a href="#proyectos">Proyectos</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#contacto">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <hr>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+
+        <!-- PRESENTACIÓN -->
+        <section id="inicio" aria-labelledby="titulo-inicio">
+            <h2 id="titulo-inicio">Bienvenidos a EcoPuntos</h2>
+            <p>
+                Facilitamos a la ciudadania la ubicacion de contenedores, puntos de acopio y centros de reciclaje
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- SECCIÓN MODELO: QUIÉNES SOMOS -->
+        <section id="nosotros">
+            <h2>Quiénes somos</h2>
+            <img src="imagenes/nosotros.jpg" alt="Equipo de la organización" width="450">
+            <p>
+                Somos una organización que promueve iniciativas relacionadas con el
+                objetivo de desarrollo sostenible asignado a nuestro equipo.
+            </p>
+            <h3>Nuestra misión</h3>
+            <p>Reducir la generacion de desechos mediante la prevencion, reduccion, reciclado y reutlizacion accesible
+                para todos.</p>
+            <h3>Nuestra visión</h3>
+            <p>Convertirnos en la red digital de referencia nacional para el reciclaje y la gestion responsable de
+                residuos.</p>
+        </section>
+
+        <hr>
+
+
+        <!-- SECCIÓN MIS LUGARES FAVORITOS (Juan Tolentino (HU3)) -->
+        <section id="favoritos" aria-labelledby="titulo-favoritos">
+            <h2 id="titulo-favoritos">Mis Lugares Favoritos</h2>
+            <p id="mensaje-favoritos-vacio">Aún no has guardado ningún centro de acopio recurrente.</p>
+            <div id="contenedor-favoritos" class="grid-puntos">
+                <!-- Aquí JavaScript clonará las tarjetas guardadas -->
+            </div>
+        </section>
+
+        <hr>
+        <!-- SECCIÓN 1: SERVICIOS (Sebastian Gutierrez (HU1))-->
+        <section id="servicios">
+            <h2>Nuestros servicios</h2>
+            <img src="imagenes/servicios.jpg" alt="Servicios de gestion de residuios y reciclaje" width="450">
+            <p>Ofrecemos soluciones accesibles para la gestión responsable de residuos y el reciclaje.</p>
+
+            <!-- LOCALIZADOR INTERACTIVO DE PUNTOS DE ACOPIO -->
+            <div id="contenedor-localizador">
+                <h3>Localizador de Puntos de Acopio</h3>
+                <p>Selecciona un tipo de residuo para ver los contenedores disponibles:</p>
+
+                <!-- Barra de botones de filtro -->
+                <div id="filtros-residuos" role="group" aria-label="Filtro por tipo de residuo">
+                    <button type="button" class="btn-filtro activo" data-tipo="todos">Todos</button>
+                    <button type="button" class="btn-filtro" data-tipo="plastico">Plástico</button>
+                    <button type="button" class="btn-filtro" data-tipo="vidrio">Vidrio</button>
+                    <button type="button" class="btn-filtro" data-tipo="papel">Papel / Cartón</button>
+                    <button type="button" class="btn-filtro" data-tipo="pilas">Pilas / RAEE</button>
+                    <button type="button" class="btn-filtro" data-tipo="organico">Orgánico</button>
+                </div>
+
+                <!-- Visor / Mapa con tarjetas de puntos de acopio -->
+                <div id="mapa-acopio">
+                    <!-- Mensaje de estado cuando no hay coincidencias -->
+                    <p id="mensaje-vacio" class="oculto">No hay contenedores registrados para el filtro seleccionado.
+                    </p>
+
+                    <div id="lista-puntos" class="grid-puntos">
+                        <!-- Punto 1 -->
+                        <article class="punto-card" data-id="1" data-residuos="plastico vidrio papel">
+                            <span class="punto-icono" aria-hidden="true">📍</span>
+                            <div class="punto-info">
+                                <h4>EcoPunto Central - Parque Zonal</h4>
+                                <p><strong>Dirección:</strong> Av. Los Héroes 123</p>
+                                <p><strong>Horario:</strong> Lun - Sáb: 8:00 am - 6:00 pm</p>
+                                <div class="etiquetas">
+                                    <span class="badge badge-plastico">Plástico</span>
+                                    <span class="badge badge-vidrio">Vidrio</span>
+                                    <span class="badge badge-papel">Papel / Cartón</span>
+                                </div>
+                                <button type="button" class="btn-favorito" aria-label="Guardar en favoritos">
+                                    <span class="icono-corazon">♥</span> <span class="texto-btn">Guardar en
+                                        favoritos</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- Punto 2 -->
+                        <article class="punto-card" data-id="2" data-residuos="pilas">
+                            <span class="punto-icono" aria-hidden="true">📍</span>
+                            <div class="punto-info">
+                                <h4>Mall del sur</h4>
+                                <p><strong>Dirección:</strong> Calle Comercio 450</p>
+                                <p><strong>Horario:</strong> Lun - Vie: 9:00 am - 5:00 pm</p>
+                                <div class="etiquetas">
+                                    <span class="badge badge-pilas">Pilas / RAEE</span>
+                                </div>
+                                <button type="button" class="btn-favorito" aria-label="Guardar en favoritos">
+                                    <span class="icono-corazon">♥</span> <span class="texto-btn">Guardar en
+                                        favoritos</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- Punto 3 -->
+                        <article class="punto-card" data-id="3" data-residuos="organico">
+                            <span class="punto-icono" aria-hidden="true">📍</span>
+                            <div class="punto-info">
+                                <h4>BioHuerto Comunitario</h4>
+                                <p><strong>Dirección:</strong> Jr. Las Flores 789</p>
+                                <p><strong>Horario:</strong> Mar - Dom: 7:00 am - 1:00 pm</p>
+                                <div class="etiquetas">
+                                    <span class="badge badge-organico">Orgánico</span>
+                                </div>
+                                <button type="button" class="btn-favorito" aria-label="Guardar en favoritos">
+                                    <span class="icono-corazon">♥</span> <span class="texto-btn">Guardar en
+                                        favoritos</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- Punto 4 -->
+                        <article class="punto-card" data-id="4" data-residuos="plastico papel">
+                            <span class="punto-icono" aria-hidden="true">📍</span>
+                            <div class="punto-info">
+                                <h4>Contenedor Vecinal Norte</h4>
+                                <p><strong>Dirección:</strong> Av. Primavera 1020</p>
+                                <p><strong>Horario:</strong> Abierto 24 horas</p>
+                                <div class="etiquetas">
+                                    <span class="badge badge-plastico">Plástico</span>
+                                    <span class="badge badge-papel">Papel / Cartón</span>
+                                </div>
+                                <button type="button" class="btn-favorito" aria-label="Guardar en favoritos">
+                                    <span class="icono-corazon">♥</span> <span class="texto-btn">Guardar en
+                                        favoritos</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- Punto 5 -->
+                        <article class="punto-card" data-id="5" data-residuos="vidrio pilas">
+                            <span class="punto-icono" aria-hidden="true">📍</span>
+                            <div class="punto-info">
+                                <h4>Módulo de Acopio San Martín</h4>
+                                <p><strong>Dirección:</strong> Plaza Principal s/n</p>
+                                <p><strong>Horario:</strong> Lun - Sáb: 8:30 am - 5:30 pm</p>
+                                <div class="etiquetas">
+                                    <span class="badge badge-vidrio">Vidrio</span>
+                                    <span class="badge badge-pilas">Pilas / RAEE</span>
+                                </div>
+                                <button type="button" class="btn-favorito" aria-label="Guardar en favoritos">
+                                    <span class="icono-corazon">♥</span> <span class="texto-btn">Guardar en
+                                        favoritos</span>
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: PROYECTOS -->
+        <section id="proyectos">
+            <h2>Nuestros proyectos</h2>
+            <img src="imagenes/proyectos.jpg" alt="Proyectos de reciclaje" width="450">
+            <p>Impulsamos iniciativas sostenibles para trasformar la gestion de residuos en la comunidad.</p>
+            <ul>
+                <li>Implementación de Puntos Verdes inteligentes en zonas urbanas.</li>
+                <li>Campañas de recolección de residuos electrónicos (RAEE).</li>
+                <li>Talleres educativos sobre compostaje y economía circular.</li>
+            </ul>
+        </section>
+        <hr>
+
+        <!-- SECCIÓN 3: GALERIA -->
+        <section id="galeria">
+            <h2>Galería de Acciones y Eventos</h2>
+            <p>Conoce nuestras jornadas comunitarias de recolección, capacitaciones vecinales y el impacto del trabajo
+                colaborativo por un entorno más limpio.</p>
+
+            <h3>Imagenes y videos de nuestras actividades</h3>
+            <figure>
+                <img src="imagenes/campana1.jpg" alt="Jornada vecinal de acopio de plásticos y cartón" width="450">
+                <figcaption>Jornada comunitaria de segregación y acopio de materiales reciclables.</figcaption>
+            </figure>
+            <figure>
+                <img src="imagenes/campana2.jpeg" alt="Jornada vecinal de acopio de plásticos y cartón" width="450">
+                <figcaption>Jornada comunitaria de segregación y acopio de materiales reciclables.</figcaption>
+            </figure>
+
+            <h3>Conoce cómo funciona EcoPuntos</h3>
+            <figure>
+                <video width="480" height="320" controls>
+                    <source src="videos/presentacion.mp4" type="video/mp4">
+                </video>
+                <figcaption>Video resumen: Proceso de recepción y clasificación en nuestros centros de acopio.
+                </figcaption>
+            </figure>
+
+        </section>
+
+        <!-- SECCIÓN 4: TESTIMONIOS  -->
+        <section id="testimonios">
+            <h2>Testimonios de la comunidad</h2>
+            <p>Experiencia de vecinos y recicladores que ya forman parte de la red EcoPunto.
+            <p>
+            <blockquote>
+                <p>"Gracias al mapa de Ecopunto encontre un contenedor de RAEE cerca a mi casa para reciclar mi
+                    artefactos en desuso."
+                <p>
+                <footer>— <cite>Camila Rodriguez, ciudadana comprometida</cite></footer>
+            </blockquote>
+
+            <blockquote>
+                <p>"La opcion de guardar mis puntos favoritos me ayudan a organizar semanalmente para llevar el plastico
+                    y carton"</p>
+                <footer>- <cite>Carlos Sanchez, reciclador urbano</cite></footer>
+            </blockquote>
+        </section>
+
+        <hr>
+
+        <!-- SECCIÓN 5: CONTACTANOS -->
+        <section id="contacto">
+            <h2>Contactanos</h2>
+            <p>
+                Si tienes dudas sobre nuestros servicios o deseas colaborar con nosotros, no dudes en enviarnos un
+                mensaje.
+            </p>
+            <ul>
+                <li><strong>Teléfono de atención: </strong> (01) 234-5678</li>
+                <li><strong>WhatsApp: </strong>+51 991 234 567 </li>
+                <li><strong>Correo de soporte: </strong> soporte@ecopuntos.org</li>
+                <li><strong>Horarios de atención: </strong> Lunes a Viernes de 8:30 a.m. a 6:00 p.m. </li>
+            </ul>
+
+            <p>¿Conoces algun otro centro de acopio? Envianos los detalles mediante el siguiente formulario:</p>
+
+            <form action="#" , method="post">
+                <p>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </p>
+
+                <p>
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </p>
+
+                <p>
+                    <label for="tipo-residuo">Tipo de residuo:</label>
+                    <select id="tipo-residuo" name="tipo-residuo" required>
+                        <option value="vidrio">Vidrio</option>
+                        <option value="plastico">Plástico</option>
+                        <option value="papel">Papel</option>
+                        <option value="general">Multiples residuos</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="mensaje">Ubicación sugerida:</label><br>
+                    <textarea id="mensaje" name="mensaje" rows="4" cols="40" required></textarea>
+                </p>
+
+                <p>
+                    <button type="submit">Enviar sugerencia</button>
+                    <button type="reset">Limpiar formulario</button>
+                </p>
+            </form>
+        </section>
+
+
+    </main>
+
+    <hr>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <h2>Contacto y redes sociales</h2>
+        <p>Correo: contacto@ecopuntos.org</p>
+        <p>
+            <a href="https://www.facebook.com/">Facebook</a> |
+            <a href="https://www.instagram.com/">Instagram</a> |
+            <a href="https://www.youtube.com/">YouTube</a>
+        </p>
+        <p>&copy; 2026 EcoPuntos. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script de interacción con defer para no bloquear el renderizado -->
+    <script src="js/menu.js" defer></script>
+    <script src="js/main.js" defer></script>
+
+</body>
+
+</html>
