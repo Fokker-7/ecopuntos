@@ -628,3 +628,426 @@ footer a:hover {
         background: #f4f9f4;
     }
 }
+/* ===================================================
+   ASISTENTE INTELIGENTE DE RECICLAJE (HAI + MULTIMODAL)
+   =================================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.banner-asistente-ia {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f4f9f4 100%);
+    border: 1.5px solid #a5d6a7;
+    border-left: 5px solid #2e7d32;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.banner-ia-texto {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex: 1 1 280px;
+}
+
+.banner-ia-texto strong {
+    color: #1b5e20;
+    display: block;
+    font-size: 1rem;
+}
+
+.banner-ia-texto p {
+    margin: 0.2rem 0 0 0;
+    font-size: 0.88rem;
+    color: #455a64;
+}
+
+.badge-ia-pill,
+.badge-sugerencia-ia {
+    display: inline-block;
+    background-color: #1b5e20;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.acciones-banner-ia {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-ia-primario {
+    background-color: #2e7d32;
+    color: #ffffff;
+    border: 2px solid #2e7d32;
+    padding: 0.55rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.btn-ia-primario:hover {
+    background-color: #1b5e20;
+    border-color: #1b5e20;
+}
+
+.btn-ia-secundario {
+    background-color: #ffffff;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+    padding: 0.55rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.btn-ia-secundario:hover {
+    background-color: #e8f5e9;
+}
+
+.banner-filtro-activo-ia {
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #1b5e20;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.btn-link-ia {
+    background: none;
+    border: none;
+    color: #1b5e20;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.4rem;
+    margin: 0;
+}
+
+/* Modal / Pop-up Emergente Multimodal */
+.modal-ia-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(27, 94, 32, 0.45);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1100;
+}
+
+.modal-ia-dialogo {
+    background-color: #ffffff;
+    border: 2px solid #2e7d32;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 580px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+    animation: aparecerModalIA 0.2s ease-out;
+}
+
+@keyframes aparecerModalIA {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-ia-cabecera {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-ia-cabecera h4 {
+    color: #1b5e20;
+    font-size: 1.25rem;
+    margin-top: 0.4rem;
+}
+
+.btn-cerrar-ia {
+    background-color: #f4f9f4;
+    color: #2c3e50;
+    border: 1px solid #c8e6c9;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn-cerrar-ia:hover {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+}
+
+.modal-ia-subtitulo {
+    font-size: 0.9rem;
+    color: #555555;
+    margin-bottom: 1rem;
+}
+
+.form-asistente-ia {
+    margin-top: 0;
+    max-width: 100%;
+}
+
+.fila-input-ia {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
+.fila-input-ia input[type="text"] {
+    flex: 1;
+    border: 1.5px solid #a5d6a7;
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+}
+
+.btn-voz-ia {
+    background-color: #f4f9f4;
+    color: #1b5e20;
+    border: 1.5px solid #2e7d32;
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.btn-voz-ia.escuchando {
+    background-color: #ffebee;
+    color: #c62828;
+    border-color: #e53935;
+    animation: pulsoVoz 1.2s infinite;
+}
+
+.btn-voz-ia:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+@keyframes pulsoVoz {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.35);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(229, 57, 53, 0);
+    }
+}
+
+.estado-voz-ia {
+    font-size: 0.84rem;
+    color: #2e7d32;
+    min-height: 1.2rem;
+    margin: 0.45rem 0 0.6rem 0;
+    font-weight: 500;
+}
+
+.chips-ejemplos-ia {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    font-size: 0.82rem;
+    color: #555555;
+}
+
+.chip-ejemplo-ia {
+    background-color: #f4f9f4;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+    border-radius: 16px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.chip-ejemplo-ia:hover {
+    background-color: #e8f5e9;
+}
+
+/* Tarjeta de Resultado HAI (Transparencia, Control y Calibración) */
+.resultado-ia {
+    border: 1.5px solid #c8e6c9;
+    border-left: 5px solid #2e7d32;
+    background-color: #f9fbf9;
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.resultado-ia.estado-ambiguo {
+    border-color: #ffe082;
+    border-left-color: #f57f17;
+    background-color: #fffdf5;
+}
+
+.resultado-ia.estado-error {
+    border-color: #ffcdd2;
+    border-left-color: #c62828;
+    background-color: #fff9f9;
+}
+
+.resultado-ia-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.confianza-ia {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #455a64;
+}
+
+.recomendacion-titulo {
+    color: #1b5e20;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+}
+
+.resultado-ia.estado-ambiguo .recomendacion-titulo {
+    color: #e65100;
+}
+
+.resultado-ia.estado-error .recomendacion-titulo {
+    color: #b71c1c;
+}
+
+.explicabilidad-ia {
+    background-color: #ffffff;
+    border: 1px solid #e0ece0;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 0.9rem;
+    font-size: 0.88rem;
+}
+
+.explicabilidad-ia p {
+    margin-bottom: 0.35rem;
+}
+
+.explicabilidad-ia p:last-child {
+    margin-bottom: 0;
+}
+
+.centros-coincidentes-ia {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.acciones-ia {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.btn-descartar-ia {
+    background-color: #ffffff;
+    color: #555555;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.88rem;
+    margin: 0;
+}
+
+.btn-descartar-ia:hover {
+    background-color: #f1f1f1;
+}
+
+/* Adaptación responsive en móvil (evita el width: 100% global en botones compactos) */
+@media (max-width: 600px) {
+    .modal-ia-dialogo {
+        padding: 1.1rem;
+    }
+
+    .btn-cerrar-ia {
+        width: 36px;
+        margin-bottom: 0;
+    }
+
+    .fila-input-ia {
+        flex-wrap: wrap;
+    }
+
+    .fila-input-ia input[type="text"] {
+        flex: 1 1 100%;
+    }
+
+    .fila-input-ia .btn-voz-ia,
+    .fila-input-ia .btn-ia-primario {
+        width: auto;
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    .chip-ejemplo-ia {
+        width: auto;
+        margin-bottom: 0;
+    }
+
+    .acciones-banner-ia {
+        width: 100%;
+    }
+
+    .acciones-banner-ia button {
+        width: auto;
+        flex: 1;
+        margin-bottom: 0;
+    }
+}

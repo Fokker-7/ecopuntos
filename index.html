@@ -99,6 +99,94 @@
             <img src="imagenes/servicios.jpg" alt="Servicios de gestion de residuios y reciclaje" width="450">
             <p>Ofrecemos soluciones accesibles para la gestión responsable de residuos y el reciclaje.</p>
 
+            <!-- ASISTENTE INTELIGENTE DE RECICLAJE (MULTIMODAL + HAI) -->
+            <div id="asistente-ia-banner" class="banner-asistente-ia" role="region" aria-label="Asistente Inteligente de Reciclaje">
+                <div class="banner-ia-texto">
+                    <span class="badge-ia-pill">Asistente IA</span>
+                    <div>
+                        <strong>¿No sabes en qué categoría va tu residuo?</strong>
+                        <p>Escríbelo o díctalo por voz para recibir una recomendación explicada antes de filtrar.</p>
+                    </div>
+                </div>
+                <div class="acciones-banner-ia">
+                    <button type="button" id="btn-abrir-asistente" class="btn-ia-primario">
+                        Consultar por texto
+                    </button>
+                    <button type="button" id="btn-abrir-voz-directo" class="btn-ia-secundario"
+                        aria-label="Abrir asistente y dictar residuo por voz">
+                        🎙️ Usar voz
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Indicador de filtro aplicado por decisión del usuario -->
+            <div id="banner-filtro-ia" class="banner-filtro-activo-ia oculto" role="status" aria-live="polite">
+                <span id="texto-filtro-ia"></span>
+                <button type="button" id="btn-limpiar-filtro-ia" class="btn-link-ia">Ver todos los puntos</button>
+            </div>
+            
+            <!-- Interfaz emergente multimodal (Modal / Pop-up) -->
+            <div id="modal-asistente-ia" class="modal-ia-overlay oculto" role="dialog" aria-modal="true"
+                aria-labelledby="titulo-asistente-ia">
+                <div class="modal-ia-dialogo">
+                    <div class="modal-ia-cabecera">
+                        <div>
+                            <span class="badge-ia-pill">Sugerencia IA • Control Manual</span>
+                            <h4 id="titulo-asistente-ia">Asistente Inteligente de Reciclaje</h4>
+                        </div>
+                        <button type="button" id="btn-cerrar-asistente" class="btn-cerrar-ia"
+                            aria-label="Cerrar asistente">✕</button>
+                    </div>
+            
+                    <p class="modal-ia-subtitulo">
+                        Describe el objeto o material. Analizaremos la categoría adecuada sin modificar el mapa hasta que tú lo
+                        confirmes.
+                    </p>
+            
+                    <form id="form-asistente-ia" class="form-asistente-ia">
+                        <label for="input-residuo-ia" class="sr-only">¿Qué residuo deseas reciclar?</label>
+                        <div class="fila-input-ia">
+                            <input type="text" id="input-residuo-ia" placeholder="Ej: botella de vidrio, pilas AA, caja de pizza..."
+                                autocomplete="off">
+                            <button type="button" id="btn-voz-ia" class="btn-voz-ia" aria-pressed="false"
+                                aria-label="Dictar residuo por voz">
+                                🎙️ <span id="texto-btn-voz">Voz</span>
+                            </button>
+                            <button type="submit" id="btn-analizar-ia" class="btn-ia-primario">Analizar</button>
+                        </div>
+                    </form>
+            
+                    <p id="estado-voz-ia" class="estado-voz-ia" role="status" aria-live="polite"></p>
+            
+                    <!-- Ejemplos rápidos para interacción táctil en móvil -->
+                    <div class="chips-ejemplos-ia" aria-label="Ejemplos rápidos de consulta">
+                        <span>Prueba con:</span>
+                        <button type="button" class="chip-ejemplo-ia" data-consulta="Botella de plástico PET">Botella PET</button>
+                        <button type="button" class="chip-ejemplo-ia" data-consulta="Cargador de celular malogrado">Cargador
+                            viejo</button>
+                        <button type="button" class="chip-ejemplo-ia" data-consulta="Caja de pizza">Caja de pizza</button>
+                        <button type="button" class="chip-ejemplo-ia" data-consulta="Cáscaras de fruta">Cáscaras de fruta</button>
+                    </div>
+            
+                    <!-- Panel de resultado con Transparencia, Control y Recuperación ante errores -->
+                    <div id="resultado-asistente-ia" class="resultado-ia oculto" aria-live="polite">
+                        <div class="resultado-ia-top">
+                            <span class="badge-sugerencia-ia">Sugerencia IA</span>
+                            <span id="nivel-confianza-ia" class="confianza-ia"></span>
+                        </div>
+            
+                        <h5 id="titulo-recomendacion-ia" class="recomendacion-titulo"></h5>
+            
+                        <div class="explicabilidad-ia">
+                            <p><strong>Criterio de clasificación:</strong> <span id="criterio-ia"></span></p>
+                            <p id="detalle-centros-ia" class="centros-coincidentes-ia"></p>
+                        </div>
+            
+                        <div id="acciones-control-ia" class="acciones-ia"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- LOCALIZADOR INTERACTIVO DE PUNTOS DE ACOPIO -->
             <div id="contenedor-localizador">
                 <h3>Localizador de Puntos de Acopio</h3>
